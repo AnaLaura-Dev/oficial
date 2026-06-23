@@ -1,0 +1,496 @@
+## Extensões recomendadas
+PHP Server
+
+## link dos mapas no GeoNode
+https://geomapas.portaldoplanejamento.am.gov.br/catalogue/#/maps
+
+## Codigos de apoio do wordpress
+
+page-geoportal-economia.php
+<?php //Template Name: Geoportal-Economia ?>
+<?php get_header(); ?>
+<main class="eixos-body">
+<div class="eixos-themes">
+    <a href="javascript:window.history.back();" class="eixos-voltar">< Voltar</a>
+    <h1><?php the_field('eixo') ?></h1>
+    <h2><?php the_field('subtitulo') ?></h2>
+    <div id="eixos-card-area">
+        <div class="eixos-wrapper1">
+            <div class="eixos-box-area">
+                <div class="eixos-box" onclick="toggleMapSection(event, this)">
+                    <img  alt="" src="<?php the_field('card_1')?>">
+                    <div class="eixos-overlay">
+                        <h3><?php the_field('titulo_1') ?></h3>
+                    </div>
+                </div>
+                <div class="eixos-box" onclick="toggleMapSection(event, this)">
+                    <img alt="" src="<?php the_field('card_2')?>">
+                    <div class="eixos-overlay">
+                        <h3><?php the_field('titulo_2') ?></h3>
+                    </div>
+                </div>
+                <div class="eixos-box" onclick="toggleMapSection(event, this)">
+                    <img alt="" src="<?php the_field('card_3')?>">
+                    <div class="eixos-overlay">
+                        <h3><?php the_field('titulo_3') ?></h3>
+                    </div>
+                </div>
+                <div class="eixos-box" onclick="toggleMapSection(event, this)">
+                    <img alt="" src="<?php the_field('card_4')?>">
+                    <div class="eixos-overlay">
+                        <h3><?php the_field('titulo_4') ?></h3>
+                    </div>
+                </div>
+                <div class="eixos-box" onclick="toggleMapSection(event, this)">
+                    <img alt="" src="<?php the_field('card_5')?>">
+                    <div class="eixos-overlay">
+                        <h3><?php the_field('titulo_5') ?></h3>
+                    </div>
+                </div>
+                <div class="eixos-box" onclick="toggleMapSection(event, this)">
+                    <img alt="" src="<?php the_field('card_6')?>">
+                    <div class="eixos-overlay">
+                        <h3><?php the_field('titulo_6') ?></h3>
+                    </div>
+                </div>
+                <div class="eixos-box" onclick="toggleMapSection(event, this)">
+                    <img alt="" src="<?php the_field('card_7')?>">
+                    <div class="eixos-overlay">
+                        <h3><?php the_field('titulo_7') ?></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="eixos-map-section" class="eixos-hidden">
+    <div class="eixos-map-header">
+        <h2 id="eixos-map-title">Mapas de <span id="eixos-selected-theme"></span></h2>
+    </div>
+    <div class="eixos-maps-container" id="eixos-maps-container">
+    </div>
+</div>
+</main>
+<script>
+    const themeMaps = {
+    "Emprego e Renda": {
+        "Mercado Formal": [
+            {
+                title: "Empregos Formais (RAIS)",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/152/embed",
+                description: "Relação Anual de Informações Sociais - Total"
+            },
+            {
+                title: "Renda Per Capita",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/152/embed",
+                description: "Atlas Brasil - Rendimento médio por habitante"
+            }
+        ],
+        "Setores Econômicos": [
+            {
+                title: "Extrativa Mineral",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/152/embed",
+                description: "Empregos formais no setor mineral"
+            },
+            {
+                title: "Comércio",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/152/embed",
+                description: "Empregos formais no Comércio"
+            },
+            {
+                title: "Indústria de Transformação",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/152/embed",
+                description: "Empregos na indústria Manufatureira"
+            },
+            {
+                title: "Construção Civil",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/152/embed",
+                description: "Empregos no setor da Construção"
+            },
+            {
+                title: "Serviços",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/152/embed",
+                description: "Empregos no setor de Serviços"
+            },
+            {
+                title: "Administração Pública",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/152/embed",
+                description: "Empregos no setor de Administração Pública"
+            },
+            {
+                title: "Agropecuária, Extração Vegetal, Caça e Pesca",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/152/embed",
+                description: "Empregos em atividades Agropecuárias, Extração Vegetal, Caça e Pesca"
+            }
+        ]
+    },
+    "Economia": {
+        "Produto Interno Bruto": [
+            {
+                title: "PIB - Definitivo 2021",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/152/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "PIB - Estimado",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/152/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "PIB per Capita",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/152/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Valor Adicionado Bruto - Agropecuária",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/152/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Valor Adicionado Bruto - Indústria",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/152/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Valor Adicionado Bruto - Serviço",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/152/embed",
+                description: "Renda per Capita da região"
+            },
+        ],
+        "Importação e Exportação": [
+            {
+                title: "Importação dos Municípios",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/152/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Exportação dos Municípios",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/152/embed",
+                description: "Renda per Capita da região"
+            },
+        ]
+    },
+    "Agricultura": {
+        "Lavroura Permanente": [
+            {
+                title: "Banana - Permanente",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/104/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Café - Permanente",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/165/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Coco da baía - Permanente",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/105/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Guaraná - Permanente",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/103/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Laranja - Permanente",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/102/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Limão - Permanente",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/101/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Mamão - Permanente",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/100/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Maracujá - Permanente",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/99/embed",
+                description: "Renda per Capita da região"
+            }
+        ],
+        "Lavroura Temporária": [
+            {
+                title: "Abacaxi - Temporária",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/98/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Arroz - Temporária",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/97/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Cana de açúcar - Temporária",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/96/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Feijão - Temporária",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/95/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Malva - Temporária",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/94/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Mandioca - Temporária",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/93/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Melancia - Temporária",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/92/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Milho - Temporária",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/91/embed",
+                description: "Renda per Capita da região"
+            },
+        ]
+    },
+    "Extrativa": {
+        "Vegetal": [
+            {
+                title: "Açaí",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/225/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Borracha",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/226/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Castanha",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/227/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Copaíba",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/228/embed",
+                description: "Renda per Capita da região"
+            }
+        ],
+        "Madeireira": [
+            {
+                title: "Carvão Vegetal",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/152/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Lenha",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/152/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Madeira",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/152/embed",
+                description: "Renda per Capita da região"
+            },
+        ]
+    },
+    Pecuária: {
+        "Pecuária": [
+            {
+                title: "Bovino",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/169/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Bubalino",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/172/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Caprino",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/175/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Equino",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/181/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Galináceos",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/182/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Ovino",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/183/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Suíno",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/190/embed",
+                description: "Renda per Capita da região"
+            },
+        ]
+    },
+    "Produção de Origem Animal": {
+        "Produtos": [
+            {
+                title: "Leite Bovino",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/152/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Mel",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/152/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Ovos de Galinha",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/152/embed",
+                description: "Renda per Capita da região"
+            },
+        ]
+    },
+    "Piscicultura": {
+        "Peixes": [
+            {
+                title: "Curimatã",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/166/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Matrinxã",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/191/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Pirapitinga",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/207/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Pirarucu",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/208/embed",
+                description: "Renda per Capita da região"
+            },
+            {
+                title: "Tambaqui",
+                iframeUrl: "https://geomapas.portaldoplanejamento.am.gov.br/maps/210/embed",
+                description: "Renda per Capita da região"
+            },
+        ]
+    }
+};
+
+let currentActiveBox = null;
+let currentFilter = null;
+
+function toggleMapSection(event, element) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    const theme = element.querySelector('.eixos-overlay h3').textContent;
+    const mapSection = document.getElementById('eixos-map-section');
+    const wasAlreadyActive = element === currentActiveBox;
+    
+    document.querySelectorAll('.eixos-box').forEach(box => {
+        box.classList.remove('eixos-active');
+    });
+    
+    if (wasAlreadyActive) {
+        mapSection.classList.remove('eixos-show');
+        currentActiveBox = null;
+        currentFilter = null;
+        return;
+    }
+    
+    element.classList.add('eixos-active');
+    currentActiveBox = element;
+    currentFilter = null;
+    
+    document.getElementById('eixos-selected-theme').textContent = theme;
+    renderMaps(theme);
+    
+    mapSection.classList.add('eixos-show');
+    
+    setTimeout(() => {
+        mapSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }, 100);
+}
+
+function renderMaps(theme, subtema = null) {
+    const mapsContainer = document.getElementById('eixos-maps-container');
+    mapsContainer.innerHTML = '';
+    
+    // Cria os botões de filtro
+    const subtemas = themeMaps[theme] ? Object.keys(themeMaps[theme]) : [];
+    if (subtemas.length > 1) {
+        const filterContainer = document.createElement('div');
+        filterContainer.className = 'eixos-filter-container';
+        filterContainer.innerHTML = `
+            <button class="eixos-filter-btn ${!subtema ? 'active' : ''}" onclick="filterMaps('${theme}', null)">Todos</button>
+            ${subtemas.map(st => `
+                <button class="eixos-filter-btn ${subtema === st ? 'active' : ''}" onclick="filterMaps('${theme}', '${st}')">${st}</button>
+            `).join('')}
+        `;
+        mapsContainer.appendChild(filterContainer);
+    }
+    
+    if (!themeMaps[theme]) {
+        mapsContainer.innerHTML = '<p class="eixos-no-maps">Mapas em desenvolvimento</p>';
+        return;
+    }
+    
+    let mapsToShow = [];
+    if (subtema) {
+        mapsToShow = themeMaps[theme][subtema] || [];
+    } else {
+        Object.values(themeMaps[theme]).forEach(subtemaMaps => {
+            mapsToShow = mapsToShow.concat(subtemaMaps);
+        });
+    }
+    
+    if (mapsToShow.length === 0) {
+        mapsContainer.innerHTML += '<p class="eixos-no-maps">Nenhum mapa encontrado para este filtro</p>';
+        return;
+    }
+    
+    mapsToShow.forEach(map => {
+        const mapCard = document.createElement('div');
+        mapCard.className = 'eixos-map-card';
+        
+        mapCard.innerHTML = `
+            <div class="eixos-map-iframe-container">
+                <iframe src="${map.iframeUrl}" frameborder="0"></iframe>
+            </div>
+            <div class="eixos-map-info">
+                <h3>${map.title}</h3>
+                <p>${map.description}</p>
+            </div>
+        `;
+        
+        mapsContainer.appendChild(mapCard);
+        
+        const fullscreenBtn = document.createElement('button');
+        fullscreenBtn.className = 'eixos-fullscreen-btn';
+        fullscreenBtn.innerHTML = 'Tela Cheia';
+        fullscreenBtn.onclick = () => {
+            window.open(map.iframeUrl, '_blank');
+        };
+        mapCard.querySelector('.eixos-map-iframe-container').appendChild(fullscreenBtn);
+    });
+}
+
+function filterMaps(theme, subtema) {
+    currentFilter = subtema;
+    renderMaps(theme, subtema);
+}
+</script>
+<?php wp_footer(); ?>

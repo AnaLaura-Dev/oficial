@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <?php
+    wp_head();?>
+    <?php
+    $title = get_the_title();
+    if($title == ''){
+        $title = 'Home';
+    }
+    ?>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <?php echo $title; ?> | Portal do Planejamento
+    </title>
+    <link rel="stylesheet" href="https://use.typekit.net/oto7nky.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" href="<?php echo get_theme_root_uri(); ?>/PortalPlanejamento/style.css">
+    <link rel="shortcut icon" href="<?php echo get_theme_root_uri(); ?>/PortalPlanejamento/favicon.ico"
+        type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="mapa.css">
+</head>
+</head>
+
+<body>
+    <header>
+        <section class="nav center">
+            <div class="mobileBtn">
+                <span class="material-symbols-outlined">menu</span>
+            </div>
+            <div class="w25 logo">
+                <img src="https://portaldoplanejamento.am.gov.br/wp-content/themes/PortalPlanejamento/img/brasao-am.png"
+                    alt="">
+                <a href="home">
+                    <h1>PORTAL DO PLANEJAMENTO</h1>
+                    <h2>AMAZONAS</h2>
+                </a>
+            </div>
+            <div class="w50 navegador menu-desktop">
+                <nav>
+                    <ul>
+                        <a href="https://planejamento.site/portal/">
+                            <li class="nav-button">INÍCIO</li>
+                        </a>
+                        <a href="https://planejamento.site/portal/sobre/">
+                            <li class="nav-button">SOBRE</li>
+                        </a>
+                        <a href="https://planejamento.site/portal/produtos/">
+                            <li class="nav-button">PRODUTOS</li>
+                        </a>
+                        <a href="https://planejamento.site/portal/sistemas/">
+                            <li class="nav-button">SISTEMAS</li>
+                        </a>
+                        <a href="https://planejamento.site/portal/contato/">
+                            <li class="nav-button">CONTATO</li>
+                        </a>
+                        <a href="https://planejamento.site/portal/noticias/">
+                            <li class="nav-button">NOTÍCIAS</li>
+                        </a>
+                        <li class="nav-button act-wrapper">
+                            <a href="https://projeto.dadosabertos.online">
+                                ProgIDA
+                                <span class="act-tooltip">Programa de Institucionalização de Dados Abertos</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <?php
+            add_filter('get_search_form', function($form){
+                return str_replace(
+                    '<input type="text"',
+                    '<input type="text" placeholder="Pesquisar..."',
+                    $form
+                );
+            });
+            get_search_form();
+            ?>
+
+        </section>
+    </header>
+    <main>
+        <section class="am-mapas-banner" style="background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSySJooymTPWnJfWjSbwnk5hrhxzbeqqFqemDApHGmzy77HUyC04bBVRis&s=10);">
+            <div class="am-mapas-banner-texto">
+                <!-- <h2>GEOMAPAS</h2> -->
+                <h1>GeoMapas</h1>
+            </div>
+            <img src="https://planejamento.blog/portal/wp-content/themes/PortalPlanejamento/img/am-mapas/ondulacao1.png"
+                alt="">
+        </section>
+        <section class="am-mapas-descricao">
+            <div class="back-button whiteBtn">
+                <a href="https://portaldoplanejamento.am.gov.br/produtos/">
+                    <span class="material-symbols-outlined">chevron_left</span>
+                    <h2>PRODUTOS</h2>
+                </a>
+            </div>
+            <h1>O que é?</h1>
+            <p>
+                Página voltada para divulgação de mapas.
+            </p>
+        </section>
+        <div class="geoportal-main-content">
+            <div id="particles-js"></div>
+            <div class="geoportal-content-wrapper">
+                <div class="geoportal-themes">
+                    <h1>Eixos Temáticos</h1>
+                    <h2>Visualize o Amazonas sob novas perspectivas com dados geográficos personalizados</h2>
+                    <div class="geoportal-box-area">
+                        <div class="card_container">
+
+                            <!-- EIXO 1 -->
+                            <div class="main_card">
+                                <div class="background1"></div>
+                                <div class="cool_card_logo">
+                                    <p>Economia</p>
+                                </div>
+                                <div class="box c1-b1"><span class="icon"><button id="abrirModal">Emprego e Renda</button></span>
+                                    <dialog id="meuModal" style="margin-left: 5%; margin-top: 15%; width: 90%; height: 50;">
+                                        <h2 style="color: #fff; font-weight: bold; font-size: 35px;">Empregos Formais</h2>
+                                        <iframe src="https://geomapas.portaldoplanejamento.am.gov.br/maps/152/embed#/" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"  referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                        <select id="selectModal" onchange="location = this.value;"  style="color: #fff; background-color: #075891; border-radius: 8px; font-size: 16px;">
+                                            <option value="">Selecione</option>
+                                            <option
+                                            value="https://geomapas.portaldoplanejamento.am.gov.br/maps/207/embed#/">Renda Per Capita</option>
+                                            <option value="">Extrativa Mineral</option>
+                                            <option value="">Comércio</option>
+                                            <option value="">Indústria de transformação</option>
+                                            <option value="">Construção Civil</option>
+                                            <option value="">Serviços</option>
+                                            <option value="">Administração publica</option>
+                                            <option value="">Agropecuária, Extração Vegetal, Caça e Pesca</option>
+                                        </select>
+                                        <button id="fecharModal"
+                                            style="background-color: #075891; color: #fff; width: 80px; margin-left: 80px; border-radius: 8px;">Fechar</button>
+                                    </dialog>
+                                </div>
+
+                                <div class="box c1-b2"><span class="icon"><button id="abrirModal">Economia</button></span>
+                                     <dialog id="meuModal" style="margin-left: 5%; margin-top: 15%; width: 90%; height: 50;">
+                                        <h2 style="color: #fff; font-weight: bold;">Empregos Formais</h2>
+                                        <iframe src="https://geomapas.portaldoplanejamento.am.gov.br/maps/152/embed#/" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"  referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                        <select>
+                                            <option value="">Selecione</option>
+                                            <option
+                                            value="https://geomapas.portaldoplanejamento.am.gov.br/maps/207/embed#/">Renda Per Capita</option>
+                                            <option value="">Extrativa Mineral</option>
+                                            <option value="">Comércio</option>
+                                            <option value="">Indústria de transformação</option>
+                                            <option value="">Construção Civil</option>
+                                            <option value="">Serviços</option>
+                                            <option value="">Administração publica</option>
+                                            <option value="">Agropecuária, Extração Vegetal, Caça e Pesca</option>
+                                        </select>
+                                        <button id="fecharModal"
+                                            style="background-color: #075891; color: #fff; width: 80px; margin-left: 80px; border-radius: 8px;">Fechar</button>
+                                    </dialog>
+                                </div>
+
+                                <div class="box c1-b3"><span class="icon"><button id="abrirModal">Agricultura</button></span>
+                                    <dialog id="meuModal">
+                                        <h2>PIB</h2>
+                                        <iframe src="https://geomapas.portaldoplanejamento.am.gov.br/maps/152/embed#/"
+                                            width="300%" height="400" style="border:0;" allowfullscreen=""
+                                            loading="lazy"></iframe>
+                                        <button id="fecharModal"
+                                            style="background-color: #075891; color: #fff; width: 80px; margin-left: 80px;">Fechar</button>
+                                    </dialog>
+                                </div>
+
+                                <div class="box c1-b4"><span class="icon">Extrativa</span></div>
+
+                                <div class="box c1-b5"><span class="icon">Pecuária</span></div>
+
+                                <div class="box c1-b6"><span class="icon"><button id="abrirModal">Produção de Origem Animal</button></span>
+                                    <dialog id="meuModal">
+                                        <h2>Animal</h2>
+                                        <iframe src="https://geomapas.portaldoplanejamento.am.gov.br/maps/152/embed#/"
+                                            width="300%" height="400" style="border:0;" allowfullscreen=""
+                                            loading="lazy"></iframe>
+                                        <button id="fecharModal"
+                                            style="background-color: #075891; color: #fff; width: 80px; margin-left: 80px;">Fechar</button>
+                                    </dialog>
+                                </div>
+                            </div>
+
+                            <!--EIXO 2-->
+                            <div class="main_card">
+                                <div class="background2"></div>
+                                <div class="cool_card_logo">
+                                    <p>Demografia</p>
+                                </div>
+                                <div class="box c2-b1"><span class="icon">Caracterização Territorial</span></div>
+                                <div class="box c2-b2"><span class="icon">Infraestrutura</span></div>
+                                <div class="box c2-b3"><span class="icon">Demografia</span></div>
+                            </div>
+
+                            <!-- EIXO 3-->
+                            <div class="main_card">
+                                <div class="background3"></div>
+                                <div class="cool_card_logo">
+                                    <p>Meio Ambiente</p>
+                                </div>
+                                <div class="box c3-b1"><span class="icon">Mineração</span></div>
+                                <div class="box c3-b2"><span class="icon">Meio Ambiente</span></div>
+                            </div>
+
+                            <!-- EIXO 4-->
+                            <div class="main_card">
+                                <div class="background4"></div>
+                                <div class="cool_card_logo">
+                                    <p>Social</p>
+                                </div>
+                                <div class="box c4-b1"><span class="icon">Segurança</span></div>
+                                <div class="box c4-b2"><span class="icon">Saúde</span></div>
+                                <div class="box c4-b3"><span class="icon">Educação</span></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        </div>
+    </main>
+    <script src="mapa.js"></script>
+</body>
+
+</html>

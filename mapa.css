@@ -1,0 +1,156 @@
+.geoportal-box-area *,
+.geoportal-box-area *::before,
+.geoportal-box-area *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+   
+}
+
+.card_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.box span{
+    font-size: 16px;
+}
+
+.main_card {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(135deg, #4072a1, #2b5278);
+  border-radius: 30px;
+  overflow: hidden;
+  transition: all 1s ease-in-out;
+  flex-shrink: 0;
+  margin-top: 160px;
+}
+
+.background1 {
+  position: absolute;
+  inset: 0;
+  background: url("https://planejamento.blog/portal/wp-content/uploads/2025/05/ECONOMIA.png")
+}
+.background2 {
+  position: absolute;
+  inset: 0;
+  background: url("https://planejamento.blog/portal/wp-content/uploads/2025/05/DEMOGRAFIA.png")
+}
+.background3 {
+  position: absolute;
+  inset: 0;
+  background: url("https://planejamento.blog/portal/wp-content/uploads/2025/05/MEIO-AMBIENTE.png")
+}
+.background4 {
+  position: absolute;
+  inset: 0;
+  background: url("https://planejamento.blog/portal/wp-content/uploads/2025/05/SOCIAL.png")
+}
+select{
+    color: #fff; 
+    background-color: #075891; 
+    border-radius: 8px; 
+    font-size: 16px; 
+}
+dialog{
+    border:none;
+    padding: 0;
+    margin: 0;
+    bottom: 0;
+    background: transparent;
+    transform: scale(1.0);
+}
+dialog::backdrop {
+   position: fixed;
+   background-color: rgba(0, 0, 0, 0.5);
+}
+button{
+    color: #075891;
+    font-size: 16px;
+    font-weight: bold;
+}
+.cool_card_logo {
+  position: absolute;
+  right: 50%;
+  bottom: 50%;
+  transform: translate(50%, 50%);
+  transition: all 0.6s ease-in-out;
+  font-size: 30px; 
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  width: 90%;
+  pointer-events: none;
+}
+
+.icon {
+  display: block;
+  font-weight: bold;
+  font-size: 10px; 
+  line-height: 1.2;
+  color: #075891; 
+  text-align: right;
+  width: 100%;
+  word-wrap: break-word; 
+}
+
+.box {
+  position: absolute;
+  padding: 8px 12px 8px 8px; 
+  background: rgba(255, 255, 255, 0.85); 
+  border-top: 2px solid rgb(255, 255, 255);
+  border-right: 1px solid rgb(47, 94, 126);
+  border-radius: 10% 13% 42% 0%/10% 12% 75% 0%;
+  box-shadow: rgba(100, 100, 111, 0.2) -7px 7px 29px 0px;
+  transform-origin: bottom left;
+  transition: all 1s ease-in-out;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+/* --- CARD 1 --- */
+.c1-b1 { width: 95%; height: 95%; bottom: -95%; left: -95%; }
+.c1-b2 { width: 84%; height: 84%; bottom: -84%; left: -84%; transition-delay: 0.1s; }
+.c1-b3 { width: 73%; height: 73%; bottom: -73%; left: -73%; transition-delay: 0.2s; }
+.c1-b4 { width: 62%; height: 62%; bottom: -62%; left: -62%; transition-delay: 0.3s; }
+.c1-b5 { width: 51%; height: 51%; bottom: -51%; left: -51%; transition-delay: 0.4s; }
+.c1-b6 { width: 40%; height: 40%; bottom: -40%; left: -40%; transition-delay: 0.5s; }
+
+/* --- CARD 2 --- */
+.c2-b1 { width: 95%; height: 95%; bottom: -95%; left: -95%; }
+.c2-b2 { width: 65%; height: 65%; bottom: -65%; left: -65%; transition-delay: 0.15s; }
+.c2-b3 { width: 45%; height: 35%; bottom: -35%; left: -35%; transition-delay: 0.3s; }
+
+/* --- CARD 3--- */
+.c3-b1 { width: 95%; height: 95%; bottom: -95%; left: -95%; }
+.c3-b2 { width: 65%; height: 65%; bottom: -65%; left: -65%; transition-delay: 0.10s; }
+
+/* --- CARD 4 --- */
+.c4-b1 { width: 95%; height: 95%; bottom: -95%; left: -95%; }
+.c4-b2 { width: 65%; height: 65%; bottom: -65%; left: -65%; transition-delay: 0.15s; }
+.c4-b3 { width: 35%; height: 35%; bottom: -35%; left: -35%; transition-delay: 0.3s; }
+
+.main_card:hover {
+  transform: scale(1.1);
+}
+
+.main_card:hover .box {
+  bottom: -1px;
+  left: -1px;
+}
+
+.main_card:hover .cool_card_logo {
+  transform: translate(0, 0);
+  bottom: 15px;
+  right: 15px;
+  font-size: 16px; /* Reduz */
+}
