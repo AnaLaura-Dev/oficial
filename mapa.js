@@ -1,21 +1,30 @@
-const select = document.getElementById("selectModal");
-const modal = document.getElementById("meuModal");
-const botaoAbrir = document.getElementById("abrirModal");
-const botaoFechar = document.getElementById("fecharModal");
- 
-botaoAbrir.addEventListener("click", () => {
-  modal.showModal();
-});
 
-botaoFechar.addEventListener("click", () => {
-  modal.close();
-});
+window.onload = () => {
+    const boxes = document.querySelectorAll('.box');
+    boxes.forEach(box => {
+        const botaoAbrir = box.querySelector('.abrirModal');
+        const botaoFechar = box.querySelector('.fecharModal');
+        const dialog = box.querySelector('.meuModal');
 
-//select
-select.addEventListener('click', function() {
-    urlDestino = this.value;
-    if (urlDestino) {
-        modal.classList.add('visivel');
-         modal.showModal();
-    }
-});
+        if (botaoAbrir && dialog) {
+            botaoAbrir.addEventListener('click', () => {
+                dialog.showModal();
+            });
+        }
+
+        if (botaoFechar && dialog) {
+            botaoFechar.addEventListener('click', () => {
+                dialog.close();
+            });
+        }
+    });
+}
+
+function atualizarModal (selecElement) {
+    const select = document.getElementById('.selectModal');
+     const valorSelecionado = select.value;
+     if(select && option){
+        dialog.showModal();
+     }
+
+}
